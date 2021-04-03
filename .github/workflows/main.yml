@@ -1,0 +1,48 @@
+name: Deploy site files
+
+on:
+  push:
+    branches:
+      - master # 只在master上push触发部署
+    paths-ignore: # 下列文件的变更不触发部署，可以自行添加
+      - README.md
+      - LICENSE
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04 # 使用ubuntu系统镜像运行自动化脚本
+
+    steps: # 自动化步骤
+      - uses: actions/checkout@v1 # 第一步，下载代码仓库
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: latest
+          # extended: true
+      - name: Build
+        run: hugo -D
+
+      - name: Deploy to Staging server
+        uses: easingthemes/ssh-deploy@v2.1.6
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+          ARGS: "-rltgoDzvO"
+          SOURCE: './public/'
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USERNAME }}
+          TARGET: '/www/wwwroot/blog.gojw.xyz/mybolg/public/'
+          EXCLUDE: "/dist/, /node_modules/"
+
+
+#      - name: SSH Server Deploy
+#        uses: kostya-ten/ssh-server-deploy@v4
+#        with:
+#          host: ${{ secrets.SSH_HOST }}
+#          port: ${{ secrets.DEPLOY_PORT }}
+#          username: ${{ secrets.SSH_USERNAME }}
+#          password: ${{ secrets.DEPLOY_PASSWORD }}
+#          scp_source: ./public/
+#          scp_target: /www/wwwroot/blog.gojw.xyz/myblog/
+
+
