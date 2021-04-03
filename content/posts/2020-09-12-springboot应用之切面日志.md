@@ -7,6 +7,8 @@ tags:
   - aop
 title: springboot应用之切面日志
 date: 2020-09-12
+aliases:
+    - /2020/09/12/springboot应用之切面日志/
 ---
 
 
