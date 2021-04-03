@@ -538,8 +538,8 @@ theme = "LoveIt"
 
 # Permalinks 配置
 [Permalinks]
-  # posts = ":year/:month/:filename"
-  posts = ":filename"
+  posts = ":year/:month/:filename"
+  # posts = ":filename"
 
 # 隐私信息配置
 [privacy]
@@ -573,5 +573,3 @@ theme = "LoveIt"
 [frontmatter]
 date = [":filename", ":default"]
 
-[permalinks]
-posts = "/:year/:month/:day/:slug"
