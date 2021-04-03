@@ -184,7 +184,7 @@ theme = "LoveIt"
 
   # 作者的社交信息设置
   [params.social]
-    GitHub = "xxxx"
+    GitHub = "@jw-star"
     Linkedin = ""
     Twitter = "xxxx"
     Instagram = "xxxx"
@@ -361,9 +361,9 @@ theme = "LoveIt"
         clientSecret = ""
       # Valine 评论系统设置
       [params.page.comment.valine]
-        enable = false
-        appId = ""
-        appKey = ""
+        enable = true
+        appId = "8qdkR8V09QDu1qgSQSCup2wG-gzGzoHsz"
+        appKey = "3rwwH2YI6p56EUCt1BWjWwW7"
         placeholder = ""
         avatar = "mp"
         meta= ""
@@ -373,7 +373,7 @@ theme = "LoveIt"
         recordIP = true
         highlight = true
         enableQQ = false
-        serverURLs = ""
+        serverURLs = "https://8qdkr8v0.lc-cn-n1-shared.com"
         #  emoji 数据文件名称, 默认是 "google.yml"
         # ("apple.yml", "google.yml", "facebook.yml", "twitter.yml")
         # 位于 "themes/LoveIt/assets/data/emoji/" 目录
