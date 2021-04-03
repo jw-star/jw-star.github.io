@@ -2,6 +2,8 @@
 category: linux
 layout: post
 title: 苹果CMS设置aliplayer播放器
+aliases:
+    - /2020/04/10/苹果CMS设置aliplayer播放器/
 ---
 ## 苹果cms设置阿里云本地播放器
 ### 编辑 aliplayer.html 
