@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>动态代理 - 标签 - 我的全新 Hugo 博客网站</title>
+        <link>https://blog.gojw.xyz/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</link>
+        <description>动态代理 - 标签 - 我的全新 Hugo 博客网站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2419254437@qq.com (jw)</managingEditor>
+            <webMaster>2419254437@qq.com (jw)</webMaster><lastBuildDate>Wed, 25 Mar 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.gojw.xyz/tags/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+    <title>spring中的动态代理</title>
+    <link>https://blog.gojw.xyz/2020-03-25-spring%E4%B8%AD%E7%9A%84%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</link>
+    <pubDate>Wed, 25 Mar 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-03-25-spring%E4%B8%AD%E7%9A%84%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/</guid>
+    <description><![CDATA[两种代理原理 jdk动态代理是利用反射机制生成一个实现代理接口的匿名类，在调用具体方法前调用InvokeHandler来处理。 cglib动态代]]></description>
+</item></channel>
+</rss>

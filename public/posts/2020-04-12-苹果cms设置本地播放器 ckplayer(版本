@@ -1,0 +1,68 @@
+---
+layout: post
+tags:
+  - CMS
+  - 播放器
+  - ckplayer
+title: '苹果cms设置本地播放器 ckplayer(版本:ckplayerx)'
+category: linux
+---
+### 苹果cms设置本地播放器 ckplayer(版本:ckplayerx)
+
+#### 概述
+之前试过阿里云的 `aliplayer`、苹果cms自带的 `dplayer`,跟最新的 `ckplayer`比,个人体验ckplayer好很多。ckplayer和dplayer相比，不会出现手机浏览器无法横屏的情况，定制性强。
+#### 设置方法
+1. 官网下载压缩包 [压缩包地址](http://www.ckplayer.com/down/ "压缩包地址")
+ windows的话上传里面的ckplayer目录到服务器（当然得压缩一下先），解压到 苹果CMS 的 static/player/
+ 目录下。
+ 
+2. 新建 ckplayer.html
+
+```
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" id="viewport" name="viewport">
+		<title>ckplayer</title>
+		<style type="text/css">
+	 body,html{background-color:#000;padding: 0;margin: 0;width:100%;height:100%;}
+		#video{width:100%;height:100%;padding:0;margin:0;display:block;}
+		</style>
+
+	</head>
+
+	<body>
+		<div id="video"></div>
+		<script type="text/javascript" src="/static/player/ckplayer/ckplayer.js"></script>
+		<script type="text/javascript">
+			var videoObject = {
+				container: '#video', //容器的ID或className
+				variable: 'player',//播放函数名称
+				video: parent.MacPlayer.PlayUrl, //播放地址
+				autoplay: true, //自动播放，手机端某些浏览器会失效
+				html5m3u8:true //电脑端强制 html,默认的flash太难看
+			};
+	
+		</script>
+		
+	</body>
+
+</html>
+```
+3. 播放器代码
+ ```html
+MacPlayer.Html = '<iframe src="'+maccms.path+'/static/player/ckplayer.html" width="100%" height="'+MacPlayer.Height+'" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>'; 
+MacPlayer.Show(); 
+```
+### 各终端表现 
+
+ 手机 uc 测试不会自动播放，大部分第三方浏览器会替换为自己的播放器
+ 
+ 电脑端
+[![https://ae01.alicdn.com/kf/H1b90794316b0478dab27c4f481a10c66K.png](https://ae01.alicdn.com/kf/H1b90794316b0478dab27c4f481a10c66K.png "https://ae01.alicdn.com/kf/H1b90794316b0478dab27c4f481a10c66K.png")](https://ae01.alicdn.com/kf/H1b90794316b0478dab27c4f481a10c66K.png "https://ae01.alicdn.com/kf/H1b90794316b0478dab27c4f481a10c66K.png")
+
+华为系统浏览器
+
+[![https://ae01.alicdn.com/kf/H0bf4b0640091413897f3515f2017d398y.png](https://ae01.alicdn.com/kf/H0bf4b0640091413897f3515f2017d398y.png "https://ae01.alicdn.com/kf/H0bf4b0640091413897f3515f2017d398y.png")](https://ae01.alicdn.com/kf/H0bf4b0640091413897f3515f2017d398y.png "https://ae01.alicdn.com/kf/H0bf4b0640091413897f3515f2017d398y.png")

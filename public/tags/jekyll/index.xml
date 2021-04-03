@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>jekyll - 标签 - 我的全新 Hugo 博客网站</title>
+        <link>https://blog.gojw.xyz/tags/jekyll/</link>
+        <description>jekyll - 标签 - 我的全新 Hugo 博客网站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2419254437@qq.com (jw)</managingEditor>
+            <webMaster>2419254437@qq.com (jw)</webMaster><lastBuildDate>Thu, 19 Mar 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.gojw.xyz/tags/jekyll/" rel="self" type="application/rss+xml" /><item>
+    <title>centos7安装jekyll(自动拉取GitHub提交)</title>
+    <link>https://blog.gojw.xyz/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/</link>
+    <pubDate>Thu, 19 Mar 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/</guid>
+    <description><![CDATA[TOC {:toc} rvm安装jekyll安装 githubpages 运行的jekyll响应太慢，于是决定放到主机上，并实现提交到github的文件，主机自动拉取,jekyll自]]></description>
+</item><item>
+    <title>jekyll编辑器 Jkyll Editor</title>
+    <link>https://blog.gojw.xyz/2020-03-19-jekyll%E7%BC%96%E8%BE%91%E5%99%A8-Jkyll-Editor/</link>
+    <pubDate>Thu, 19 Mar 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-03-19-jekyll%E7%BC%96%E8%BE%91%E5%99%A8-Jkyll-Editor/</guid>
+    <description><![CDATA[jekyll编辑器 费尽千辛万苦搭建好了自己的博客，没有一个好的编辑器肯定说不过去啊，于是从网上搜索一番，嘿嘿。 编辑器名字：Jekyll Editor 插件]]></description>
+</item></channel>
+</rss>

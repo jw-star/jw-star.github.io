@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>centos - 标签 - 我的全新 Hugo 博客网站</title>
+        <link>https://blog.gojw.xyz/tags/centos/</link>
+        <description>centos - 标签 - 我的全新 Hugo 博客网站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2419254437@qq.com (jw)</managingEditor>
+            <webMaster>2419254437@qq.com (jw)</webMaster><lastBuildDate>Sat, 03 Apr 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.gojw.xyz/tags/centos/" rel="self" type="application/rss+xml" /><item>
+    <title>githubActions部署文件到服务器</title>
+    <link>https://blog.gojw.xyz/2021-04-03-githubActions%E9%83%A8%E7%BD%B2%E6%96%87%E4%BB%B6%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+    <pubDate>Sat, 03 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2021-04-03-githubActions%E9%83%A8%E7%BD%B2%E6%96%87%E4%BB%B6%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+    <description><![CDATA[ssh秘钥方式 首先在服务器生成秘钥 参考 ：参考 1 2 3 4 5 6 7 8 9 10 - name: Deploy to Staging server uses: easingthemes/ssh-deploy@v2.1.6 env: SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }} ARGS: &#34;-rltgoDzvO&#34; SOURCE: &#39;./public/&#39; #仓库根路径 REMOTE_HOST: ${{ secrets.SSH_HOST }} REMOTE_USER: ${{ secrets.SSH_USERNAME }} TARGET: &#39;/www/wwwroot/blog.gojw.xyz/mybolg/&#39; #目标服务]]></description>
+</item><item>
+    <title>centos7安装jekyll(自动拉取GitHub提交)</title>
+    <link>https://blog.gojw.xyz/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/</link>
+    <pubDate>Thu, 19 Mar 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/</guid>
+    <description><![CDATA[TOC {:toc} rvm安装jekyll安装 githubpages 运行的jekyll响应太慢，于是决定放到主机上，并实现提交到github的文件，主机自动拉取,jekyll自]]></description>
+</item></channel>
+</rss>

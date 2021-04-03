@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>音频 - 标签 - 我的全新 Hugo 博客网站</title>
+        <link>https://blog.gojw.xyz/tags/%E9%9F%B3%E9%A2%91/</link>
+        <description>音频 - 标签 - 我的全新 Hugo 博客网站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2419254437@qq.com (jw)</managingEditor>
+            <webMaster>2419254437@qq.com (jw)</webMaster><lastBuildDate>Fri, 09 Oct 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.gojw.xyz/tags/%E9%9F%B3%E9%A2%91/" rel="self" type="application/rss+xml" /><item>
+    <title>soul下载音频</title>
+    <link>https://blog.gojw.xyz/2020-10-09-soul%E4%B8%8B%E8%BD%BD%E9%9F%B3%E9%A2%91/</link>
+    <pubDate>Fri, 09 Oct 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-10-09-soul%E4%B8%8B%E8%BD%BD%E9%9F%B3%E9%A2%91/</guid>
+    <description><![CDATA[下载]]></description>
+</item><item>
+    <title>soul上传长音频</title>
+    <link>https://blog.gojw.xyz/2020-09-09-soul%E4%B8%8A%E4%BC%A0%E9%95%BF%E9%9F%B3%E9%A2%91/</link>
+    <pubDate>Wed, 09 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-09-09-soul%E4%B8%8A%E4%BC%A0%E9%95%BF%E9%9F%B3%E9%A2%91/</guid>
+    <description><![CDATA[格式转换 必须是特定格式的 wav文件，转换器地址： https://github.com/jw-star/myFigurebed/raw/master/Soul%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%99%A82.1.zip 解压里面有教程 将需要转换的录音文件(不只mp3格式，其他格式也可以)放入MP3文件夹里面（]]></description>
+</item></channel>
+</rss>

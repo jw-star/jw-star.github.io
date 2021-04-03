@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Vue - 标签 - 我的全新 Hugo 博客网站</title>
+        <link>https://blog.gojw.xyz/tags/Vue/</link>
+        <description>Vue - 标签 - 我的全新 Hugo 博客网站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2419254437@qq.com (jw)</managingEditor>
+            <webMaster>2419254437@qq.com (jw)</webMaster><lastBuildDate>Mon, 23 Mar 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.gojw.xyz/tags/Vue/" rel="self" type="application/rss+xml" /><item>
+    <title>Vue@cli3配置文件引入cdn加速</title>
+    <link>https://blog.gojw.xyz/2020-03-23-Vuecli3%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%BC%95%E5%85%A5cdn%E5%8A%A0%E9%80%9F/</link>
+    <pubDate>Mon, 23 Mar 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-03-23-Vuecli3%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%BC%95%E5%85%A5cdn%E5%8A%A0%E9%80%9F/</guid>
+    <description><![CDATA[概述 省去在 index.html一个一个引入 js 和 cs 文件，直接在配置文件引入。 过程 安装插件 html-webpack-plugin 1 npm install --save-dev html-webpack-plugin 在 package.json 同级目录新建 vue.config.js 引入插件 1 const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;) 设置要]]></description>
+</item></channel>
+</rss>

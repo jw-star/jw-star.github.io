@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>视频网站 - 标签 - 我的全新 Hugo 博客网站</title>
+        <link>https://blog.gojw.xyz/tags/%E8%A7%86%E9%A2%91%E7%BD%91%E7%AB%99/</link>
+        <description>视频网站 - 标签 - 我的全新 Hugo 博客网站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2419254437@qq.com (jw)</managingEditor>
+            <webMaster>2419254437@qq.com (jw)</webMaster><lastBuildDate>Sat, 04 Apr 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.gojw.xyz/tags/%E8%A7%86%E9%A2%91%E7%BD%91%E7%AB%99/" rel="self" type="application/rss+xml" /><item>
+    <title>苹果 CMS 快速搭建一个视频网站</title>
+    <link>https://blog.gojw.xyz/2020-04-04-%E8%8B%B9%E6%9E%9C-CMS-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%A7%86%E9%A2%91%E7%BD%91%E7%AB%99/</link>
+    <pubDate>Sat, 04 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-04-04-%E8%8B%B9%E6%9E%9C-CMS-%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%A7%86%E9%A2%91%E7%BD%91%E7%AB%99/</guid>
+    <description><![CDATA[概述 苹果 CMS 搭建视频网站，定时采集视频,对接微信公众号。 搭建成功的样子：演示地址 环境安装 安装环境：centos7 + php7.2 + mysql5.6 用到的文件：mac10]]></description>
+</item></channel>
+</rss>

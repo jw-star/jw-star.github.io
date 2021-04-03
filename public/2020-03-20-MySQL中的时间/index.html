@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>MySQL插入当前时间、自动更新时间 - 我的全新 Hugo 博客网站</title><meta name="Description" content="我的全新 Hugo 博客网站"><meta property="og:title" content="MySQL插入当前时间、自动更新时间" />
+<meta property="og:description" content="MySQL 几种时间对比 类型 字节 格式 应用场景 是否支持设置系统默认值 范围 date 3 YYYY-MM-DD 精确到天 不支持 1000-01-01/9999-12-31 time 3 HH : MM : SS 每天的时间 不支持 &lsquo;-838:59:59&rsquo;/&lsquo;838:59:59&rsquo; year 1 YYYY 只要年份 不支持 1901/2155 datetime 8" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.gojw.xyz/2020-03-20-MySQL%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/" /><meta property="og:image" content="https://blog.gojw.xyz/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.gojw.xyz/logo.png"/>
+
+<meta name="twitter:title" content="MySQL插入当前时间、自动更新时间"/>
+<meta name="twitter:description" content="MySQL 几种时间对比 类型 字节 格式 应用场景 是否支持设置系统默认值 范围 date 3 YYYY-MM-DD 精确到天 不支持 1000-01-01/9999-12-31 time 3 HH : MM : SS 每天的时间 不支持 &lsquo;-838:59:59&rsquo;/&lsquo;838:59:59&rsquo; year 1 YYYY 只要年份 不支持 1901/2155 datetime 8"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://blog.gojw.xyz/2020-03-20-MySQL%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/" /><link rel="prev" href="https://blog.gojw.xyz/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA/" /><link rel="next" href="https://blog.gojw.xyz/2020-03-23-Vuecli3%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%BC%95%E5%85%A5cdn%E5%8A%A0%E9%80%9F/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "MySQL插入当前时间、自动更新时间",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.gojw.xyz\/2020-03-20-MySQL%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4\/"
+        },"genre": "posts","keywords": "MySQL","wordcount":  763 ,
+        "url": "https:\/\/blog.gojw.xyz\/2020-03-20-MySQL%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4\/","datePublished": "2020-03-20T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "jw"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的全新 Hugo 博客网站"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="https://avatars.githubusercontent.com/u/48782751?v=4"
+        data-srcset="https://avatars.githubusercontent.com/u/48782751?v=4, https://avatars.githubusercontent.com/u/48782751?v=4 1.5x, https://avatars.githubusercontent.com/u/48782751?v=4 2x"
+        data-sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/48782751?v=4"
+        title="https://avatars.githubusercontent.com/u/48782751?v=4" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的全新 Hugo 博客网站"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="https://avatars.githubusercontent.com/u/48782751?v=4"
+        data-srcset="https://avatars.githubusercontent.com/u/48782751?v=4, https://avatars.githubusercontent.com/u/48782751?v=4 1.5x, https://avatars.githubusercontent.com/u/48782751?v=4 2x"
+        data-sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/48782751?v=4"
+        title="https://avatars.githubusercontent.com/u/48782751?v=4" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">MySQL插入当前时间、自动更新时间</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>jw</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001年01月01日">0001年01月01日</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 763 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#mysql-几种时间对比">MySQL 几种时间对比</a></li>
+    <li><a href="#mysql-插入时间">MySQL 插入时间</a></li>
+    <li><a href="#设置表字段默认-创建时间更新时间">设置表字段默认 创建时间、更新时间</a></li>
+    <li><a href="#mysql-日期计算">MySQL 日期计算</a></li>
+    <li><a href="#mysql-时区timezone转换函数">MySQL 时区（timezone）转换函数</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="mysql-几种时间对比">MySQL 几种时间对比</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>字节</th>
+<th>格式</th>
+<th>应用场景</th>
+<th>是否支持设置系统默认值</th>
+<th>范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>date</td>
+<td>3</td>
+<td>YYYY-MM-DD</td>
+<td>精确到天</td>
+<td>不支持</td>
+<td>1000-01-01/9999-12-31</td>
+</tr>
+<tr>
+<td>time</td>
+<td>3</td>
+<td>HH : MM : SS</td>
+<td>每天的时间</td>
+<td>不支持</td>
+<td>&lsquo;-838:59:59&rsquo;/&lsquo;838:59:59&rsquo;</td>
+</tr>
+<tr>
+<td>year</td>
+<td>1</td>
+<td>YYYY</td>
+<td>只要年份</td>
+<td>不支持</td>
+<td>1901/2155</td>
+</tr>
+<tr>
+<td>datetime</td>
+<td>8</td>
+<td>YYYY- MM -DD HH : MM :SS</td>
+<td>精确到秒</td>
+<td>MySQL 5.6.5支持</td>
+<td>1000-01-01 00:00:00/9999-12-31 23:59:59</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>4</td>
+<td>YYYYMMDD HHMMSS</td>
+<td>精确到秒或毫秒，时间戳，系统用于不同时区</td>
+<td>支持</td>
+<td>1970-01-01 00:00:00/2038<br>结束时间是第 2147483647 秒，北京时间 2038-1-19 11:14:07，格林尼治时间 2038年1月19日 凌晨 03:14:07</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mysql-插入时间">MySQL 插入时间</h2>
+<ol>
+<li>NOW()函数以『YYYY-MM-DD HH: MM :SS』返回当前的日期时间，可以直接存到 DATETIME 字段中。</li>
+<li>CURDATE()以『YYYY- MM -DD』的格式返回今天的日期，可以直接存到 DATE 字段中。</li>
+<li>CURTIME()以『HH: MM :SS』的格式返回当前的时间，可以直接存到 TIME 字段中。</li>
+</ol>
+<h2 id="设置表字段默认-创建时间更新时间">设置表字段默认 创建时间、更新时间</h2>
+<p>默认为创建时间(修改行后时间不会变化)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">tab_name</span> <span class="k">MODIFY</span> <span class="k">COLUMN</span> <span class="n">create_time</span> <span class="k">TIMESTAMP</span> 
+<span class="k">NOT</span> <span class="k">NULL</span> 
+<span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>修改行自动更新时间</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">ALTER</span> <span class="k">TABLE</span> <span class="n">tab_name</span>  <span class="k">MODIFY</span> <span class="k">COLUMN</span> <span class="n">update_time</span> <span class="k">TIMESTAMP</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span> 
+<span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CURRENT_TIMESTAMP</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="mysql-日期计算">MySQL 日期计算</h2>
+<p>MySQL 为日期增加一个时间间隔：date_add()</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">set</span> <span class="o">@</span><span class="n">dt</span> <span class="o">=</span> <span class="n">now</span><span class="p">();</span>
+
+<span class="k">select</span> <span class="n">date_add</span><span class="p">(</span><span class="o">@</span><span class="n">dt</span><span class="p">,</span> <span class="nb">interval</span> <span class="mi">1</span> <span class="k">day</span><span class="p">);</span> <span class="c1">-- add 1 day
+</span><span class="c1"></span><span class="k">select</span> <span class="n">date_add</span><span class="p">(</span><span class="o">@</span><span class="n">dt</span><span class="p">,</span> <span class="nb">interval</span> <span class="mi">1</span> <span class="n">hour</span><span class="p">);</span> <span class="c1">-- add 1 hour
+</span><span class="c1"></span><span class="k">select</span> <span class="n">date_add</span><span class="p">(</span><span class="o">@</span><span class="n">dt</span><span class="p">,</span> <span class="nb">interval</span> <span class="mi">1</span> <span class="k">minute</span><span class="p">);</span> <span class="c1">-- ...
+</span><span class="c1"></span><span class="k">select</span> <span class="n">date_add</span><span class="p">(</span><span class="o">@</span><span class="n">dt</span><span class="p">,</span> <span class="nb">interval</span> <span class="mi">1</span> <span class="k">second</span><span class="p">);</span>
+<span class="k">select</span> <span class="n">date_add</span><span class="p">(</span><span class="o">@</span><span class="n">dt</span><span class="p">,</span> <span class="nb">interval</span> <span class="mi">1</span> <span class="n">microsecond</span><span class="p">);</span>
+<span class="k">select</span> <span class="n">date_add</span><span class="p">(</span><span class="o">@</span><span class="n">dt</span><span class="p">,</span> <span class="nb">interval</span> <span class="mi">1</span> <span class="n">week</span><span class="p">);</span>
+<span class="k">select</span> <span class="n">date_add</span><span class="p">(</span><span class="o">@</span><span class="n">dt</span><span class="p">,</span> <span class="nb">interval</span> <span class="mi">1</span> <span class="k">month</span><span class="p">);</span>
+<span class="k">select</span> <span class="n">date_add</span><span class="p">(</span><span class="o">@</span><span class="n">dt</span><span class="p">,</span> <span class="nb">interval</span> <span class="mi">1</span> <span class="n">quarter</span><span class="p">);</span>
+<span class="k">select</span> <span class="n">date_add</span><span class="p">(</span><span class="o">@</span><span class="n">dt</span><span class="p">,</span> <span class="nb">interval</span> <span class="mi">1</span> <span class="k">year</span><span class="p">);</span>
+
+<span class="k">select</span> <span class="n">date_add</span><span class="p">(</span><span class="o">@</span><span class="n">dt</span><span class="p">,</span> <span class="nb">interval</span> <span class="o">-</span><span class="mi">1</span> <span class="k">day</span><span class="p">);</span> <span class="c1">-- sub 1 day
+</span></code></pre></td></tr></table>
+</div>
+</div><p>MySQL 为日期减去一个时间间隔：date_sub()，和 date_add() 类似</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">mysql</span><span class="o">&gt;</span> <span class="k">select</span> <span class="n">date_sub</span><span class="p">(</span><span class="s1">&#39;1998-01-01 00:00:00&#39;</span><span class="p">,</span> <span class="nb">interval</span> <span class="s1">&#39;1 1:1:1&#39;</span> <span class="n">day_second</span><span class="p">);</span>
+
+<span class="o">+</span><span class="c1">----------------------------------------------------------------+
+</span><span class="c1"></span><span class="o">|</span> <span class="n">date_sub</span><span class="p">(</span><span class="s1">&#39;1998-01-01 00:00:00&#39;</span><span class="p">,</span> <span class="nb">interval</span> <span class="s1">&#39;1 1:1:1&#39;</span> <span class="n">day_second</span><span class="p">)</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------------------------------------------+
+</span><span class="c1"></span><span class="o">|</span> <span class="mi">1997</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">30</span> <span class="mi">22</span><span class="p">:</span><span class="mi">58</span><span class="p">:</span><span class="mi">59</span> <span class="o">|</span>
+<span class="o">+</span><span class="c1">----------------------------------------------------------------+
+</span></code></pre></td></tr></table>
+</div>
+</div><p>两个日期相减 date1 - date2，返回天数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">datediff</span><span class="p">(</span><span class="s1">&#39;2008-08-08&#39;</span><span class="p">,</span> <span class="s1">&#39;2008-08-01&#39;</span><span class="p">);</span> <span class="c1">-- 7
+</span><span class="c1"></span><span class="k">select</span> <span class="n">datediff</span><span class="p">(</span><span class="s1">&#39;2008-08-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2008-08-08&#39;</span><span class="p">);</span> <span class="c1">-- -7
+</span></code></pre></td></tr></table>
+</div>
+</div><p>两个日期相减 time1 - time2，返回 time 差值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="n">timediff</span><span class="p">(</span><span class="s1">&#39;2008-08-08 08:08:08&#39;</span><span class="p">,</span> <span class="s1">&#39;2008-08-08 00:00:00&#39;</span><span class="p">);</span> <span class="c1">-- 08:08:08
+</span><span class="c1"></span><span class="k">select</span> <span class="n">timediff</span><span class="p">(</span><span class="s1">&#39;08:08:08&#39;</span><span class="p">,</span> <span class="s1">&#39;00:00:00&#39;</span><span class="p">);</span> <span class="c1">-- 08:08:08
+</span></code></pre></td></tr></table>
+</div>
+</div><p>MySQL 时间戳（timestamp）转换、增、减函数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span> <span class="k">timestamp</span><span class="p">(</span><span class="s1">&#39;2008-08-08&#39;</span><span class="p">);</span> <span class="c1">-- 2008-08-08 00:00:00
+</span><span class="c1"></span><span class="err">按格式加</span>
+<span class="k">select</span> <span class="k">timestamp</span><span class="p">(</span><span class="s1">&#39;2008-08-08 08:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;01:01:01&#39;</span><span class="p">);</span> <span class="c1">-- 2008-08-08 09:01:01
+</span><span class="c1"></span><span class="err">按格式加</span>
+<span class="k">select</span> <span class="k">timestamp</span><span class="p">(</span><span class="s1">&#39;2008-08-08 08:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;10 01:01:01&#39;</span><span class="p">);</span> <span class="c1">-- 2008-08-18 09:01:01
+</span><span class="c1"></span><span class="err">加一天</span>
+<span class="k">select</span> <span class="n">timestampadd</span><span class="p">(</span><span class="k">day</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;2008-08-08 08:00:00&#39;</span><span class="p">);</span> <span class="c1">-- 2008-08-09 08:00:00
+</span><span class="c1"></span><span class="k">select</span> <span class="n">date_add</span><span class="p">(</span><span class="s1">&#39;2008-08-08 08:00:00&#39;</span><span class="p">,</span> <span class="nb">interval</span> <span class="mi">1</span> <span class="k">day</span><span class="p">);</span> <span class="c1">-- 2008-08-09 08:00:00
+</span><span class="c1"></span>
+<span class="n">timestampdiff</span><span class="p">(</span><span class="k">option</span><span class="p">,</span><span class="n">time1</span><span class="p">,</span><span class="n">time2</span><span class="p">)</span><span class="c1">--  time2-time1
+</span><span class="c1"></span><span class="k">select</span> <span class="n">timestampdiff</span><span class="p">(</span><span class="k">year</span><span class="p">,</span><span class="s1">&#39;2002-05-01&#39;</span><span class="p">,</span><span class="s1">&#39;2001-01-01&#39;</span><span class="p">);</span> <span class="c1">-- -1
+</span><span class="c1"></span><span class="k">select</span> <span class="n">timestampdiff</span><span class="p">(</span><span class="k">day</span> <span class="p">,</span><span class="s1">&#39;2002-05-01&#39;</span><span class="p">,</span><span class="s1">&#39;2001-01-01&#39;</span><span class="p">);</span> <span class="c1">-- -485
+</span><span class="c1"></span><span class="k">select</span> <span class="n">timestampdiff</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span><span class="s1">&#39;2008-08-08 12:00:00&#39;</span><span class="p">,</span><span class="s1">&#39;2008-08-08 00:00:00&#39;</span><span class="p">);</span> <span class="c1">-- -12
+</span><span class="c1"></span>
+<span class="k">select</span> <span class="n">datediff</span><span class="p">(</span><span class="s1">&#39;2008-08-08 12:00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;2008-08-01 00:00:00&#39;</span><span class="p">);</span> <span class="c1">-- 7
+</span><span class="c1"></span><span class="err">时间戳计算时间差</span> <span class="o">&gt;</span> <span class="n">date计算时间差</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="mysql-时区timezone转换函数">MySQL 时区（timezone）转换函数</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">convert_tz</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span><span class="n">from_tz</span><span class="p">,</span><span class="n">to_tz</span><span class="p">)</span>
+
+<span class="k">select</span> <span class="n">convert_tz</span><span class="p">(</span><span class="s1">&#39;2020-03-20 22:15:32&#39;</span><span class="p">,</span> <span class="s1">&#39;+00:00&#39;</span><span class="p">,</span> <span class="s1">&#39;+08:00&#39;</span><span class="p">);</span> <span class="c1">-- 2020-03-21 06:15:32
+</span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001年01月01日</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2020-03-20-MySQL%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://blog.gojw.xyz/2020-03-20-MySQL%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/" data-title="MySQL插入当前时间、自动更新时间" data-via="xxxx" data-hashtags="MySQL"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://blog.gojw.xyz/2020-03-20-MySQL%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/" data-hashtag="MySQL"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://blog.gojw.xyz/2020-03-20-MySQL%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/" data-title="MySQL插入当前时间、自动更新时间" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://blog.gojw.xyz/2020-03-20-MySQL%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/" data-title="MySQL插入当前时间、自动更新时间"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://blog.gojw.xyz/2020-03-20-MySQL%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/" data-title="MySQL插入当前时间、自动更新时间"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://blog.gojw.xyz/2020-03-20-MySQL%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/" data-title="MySQL插入当前时间、自动更新时间" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://blog.gojw.xyz/2020-03-20-MySQL%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/" data-title="MySQL插入当前时间、自动更新时间" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.gojw.xyz/2020-03-20-MySQL%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/" data-title="MySQL插入当前时间、自动更新时间"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/MySQL/">MySQL</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA/" class="prev" rel="prev" title="科学上网如何搭建"><i class="fas fa-angle-left fa-fw"></i>科学上网如何搭建</a>
+            <a href="/2020-03-23-Vuecli3%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%BC%95%E5%85%A5cdn%E5%8A%A0%E9%80%9F/" class="next" rel="next" title="Vue@cli3配置文件引入cdn加速">Vue@cli3配置文件引入cdn加速<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.82.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">jw</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

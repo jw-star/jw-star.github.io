@@ -1,0 +1,43 @@
+# 科学上网如何搭建
+
+## 概述
+这篇主要讲如何搭建自己的科学上网服务，现在常见的的搭建方式有：
+- SSR『机场主常用，现在容易被封，不建议』
+- V2Ray 『建议，现在用的比较多』
+
+## 搭建
+一般都是一键的脚本安装，有造好的轮子，直接拿来用就可以了。
+
+1. 远程连接服务器，直接执行，一般不会出问题。
+```shell
+bash <(curl -Ls https://blog.sprov.xyz/v2-ui.sh)
+```
+2. 不出意外就安装好了
+[![https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png](https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png "https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png")](https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png "https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png")
+默认端口 65432 ，需要修改请按选项修改
+
+3. 选择协议
+
+
+[![https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png](https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png "https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png")](https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png "https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png")
+
+一般选择前两种，第二种最简单
+
+- 第二种，加密选择这个，对手机端友好似乎，一般我选择 chacha20-poly3305, shadowsocks 速度快，但是加密简单。
+[![https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png](https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png "https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png")](https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png "https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png")
+
+- 第一种，组合配置很多，都是根据 vmess 协议加密，说下最难配置的，vmess+ws+tls，**使用域名登录注意**，服务器没上传证书的话，也可以用证书内容代替，建议改为路径的，服务器设置自动续签证书，证书申请见 [续签](https://blog.gojw.xyz/2020/03/19/%E5%85%8D%E8%B4%B9https%E8%AF%81%E4%B9%A6%E7%94%B3%E8%AF%B7(%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE)/ "续签")，如果隐藏ip,cdn的话注意cdn支持的端口，文章末尾贴一下。
+
+[![https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png](https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png "https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png")](https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png "https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png")
+
+## 开启 bbrplus 加速
+几种加速方式，bbrplus较为稳定，你可以多做尝试。下面给出两种，一种只适合bbrplus（centos7）
+[bbrplus(centos7)](https://github.com/cx9208/bbrplus "bbrplus(centos7)")
+[其他加速方式一键脚本](https://github.com/chiakge/Linux-NetSpeed "其他加速方式一键脚本")
+中间等待时间可能较长，别以为是脚本出问题了。还有的加速无法安装，和你选的系统有关。
+## cloudflare cdn支持端口
+
+[![https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png](https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png "https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png")](https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png "https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png")
+
+
+

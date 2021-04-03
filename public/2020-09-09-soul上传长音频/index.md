@@ -1,0 +1,18 @@
+# soul上传长音频
+
+## 格式转换
+
+必须是特定格式的 wav文件，转换器地址：
+[https://github.com/jw-star/myFigurebed/raw/master/Soul%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%99%A82.1.zip](https://github.com/jw-star/myFigurebed/raw/master/Soul%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%99%A82.1.zip)
+解压里面有教程
+
+1. 将需要转换的录音文件(**不只mp3格式，其他格式也可以**)放入MP3文件夹里面（支持批量转换）。
+2. 双击运行run.bat文件，等待出现------Soul------之后，按任意键退出。
+3. 转换成功的录音文件保存在WAV文件夹中，录音文件转换完毕！！！
+4. 将文件发送到手机上，上传
+
+## 上传
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+    <iframe src="//player.bilibili.com/player.html?bvid=BV1RD4y1d789&page=1"  scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%; height: 100%; left: 0; top: 0;"></iframe>
+</div>
+

@@ -1,0 +1,79 @@
+# 苹果 CMS 快速搭建一个视频网站
+
+
+## 概述
+苹果 CMS 搭建视频网站，定时采集视频,对接微信公众号。
+搭建成功的样子：[演示地址](https://yyqqz.com)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200410153638320.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODQ2ODIw,size_16,color_FFFFFF,t_70)
+
+## 环境安装
+> 安装环境：centos7 + php7.2 + mysql5.6
+用到的文件：[mac10](https://github.com/jw-star/myFigurebed/raw/master/%E8%8B%B9%E6%9E%9CCMS10%E9%9B%86%E5%90%88.rar "mac10")
+## 搭建过程
+###### 安装宝塔面板（[宝塔官网](https://www.bt.cn/ "宝塔官网")）
+```shell
+yum install -y wget && wget -O install.sh http://download.bt.cn/install/install_6.0.sh && sh install.sh
+```
+命令行输入bt，根据提示可以取消登录限制和修改登录用户和密码
+
+###### 访问默认8888端口，安装环境记得选择php7.2
+
+###### 创建一个站点
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2020041015201191.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODQ2ODIw,size_16,color_FFFFFF,t_70#pic_center)
+
+###### 将苹果 CMS 源码上传到站点根目录并解压
+上传的压缩文件都需要解压记得
+常用目录
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200410152124673.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODQ2ODIw,size_16,color_FFFFFF,t_70#pic_center)
+
+###### 设置网站 https 支持
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2020041015222479.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODQ2ODIw,size_16,color_FFFFFF,t_70#pic_center)
+访问域名即可看到,初始化配置，设置之前的数据库信息,设置完成再次访问域名就可以了。
+
+###### 访问 你的域名/admin.php ,进入后台，可能会提示你重命名admin.php，为了安全
+
+
+###### 绑定自定义采集资源
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200410152633522.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODQ2ODIw,size_16,color_FFFFFF,t_70#pic_center)
+填入资源网址：http://cj.yongjiuzyw.com/inc/s_yjm3u8.php
+
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200410152731972.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODQ2ODIw,size_16,color_FFFFFF,t_70#pic_center)
+###### 绑定要采集的分类，不绑定采集不成功
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200410152920243.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODQ2ODIw,size_16,color_FFFFFF,t_70)
+
+###### 设置播放器
+
+选择 dplayer 即可，m38u的资源，先采集一个资源记得，做实验，后面再批量采集。推荐本地播放器，无广告。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200410153125119.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODQ2ODIw,size_16,color_FFFFFF,t_70)
+附录：[苹果cms设置aliplayer播放器](https://blog.gojw.xyz/2020/04/10/%E8%8B%B9%E6%9E%9CCMS%E8%AE%BE%E7%BD%AEaliplayer%E6%92%AD%E6%94%BE%E5%99%A8/)
+效果：[播放效果](https://yyqqz.com/vodplay/659-1-1.html)
+###### 定时任务
+复制要采集的定时任务链接
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200410154018935.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODQ2ODIw,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200410154224661.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODQ2ODIw,size_16,color_FFFFFF,t_70)
+复制定时任务调用的链接
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200410154428195.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODQ2ODIw,size_16,color_FFFFFF,t_70)
+利用宝塔来定时的执行定时任务
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200410154635540.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODQ2ODIw,size_16,color_FFFFFF,t_70)
+
+
+## 微信对接苹果 CMS
+1. 打开 系统 --> 微信对接配置
+依次设置你的域名即可。
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200410154755394.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODQ2ODIw,size_16,color_FFFFFF,t_70)
+
+2. 登录你的微信公众平台
+选择 开发 --> 基本配置 --> 服务器配置
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20200410154806789.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM5ODQ2ODIw,size_16,color_FFFFFF,t_70)
+
+填写之后进行测试即可，失败的话可以清缓存重试
+
+
+2. 登录你的微信公众平台
+选择 开发 --> 基本配置 --> 服务器配置
+[![https://raw.githubusercontent.com/jw-star/myFigurebed/master/img/20200404152547.png](https://raw.githubusercontent.com/jw-star/myFigurebed/master/img/20200404152547.png "https://raw.githubusercontent.com/jw-star/myFigurebed/master/img/20200404152547.png")](https://raw.githubusercontent.com/jw-star/myFigurebed/master/img/20200404152547.png "https://raw.githubusercontent.com/jw-star/myFigurebed/master/img/20200404152547.png")
+
+填写之后进行测试即可，失败的话可以清缓存重试
+

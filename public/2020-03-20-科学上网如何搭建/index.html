@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>科学上网如何搭建 - 我的全新 Hugo 博客网站</title><meta name="Description" content="我的全新 Hugo 博客网站"><meta property="og:title" content="科学上网如何搭建" />
+<meta property="og:description" content="概述 这篇主要讲如何搭建自己的科学上网服务，现在常见的的搭建方式有： SSR『机场主常用，现在容易被封，不建议』 V2Ray 『建议，现在用的比较多』 搭建 一" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.gojw.xyz/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA/" /><meta property="og:image" content="https://blog.gojw.xyz/logo.png"/><meta property="article:section" content="posts" />
+
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.gojw.xyz/logo.png"/>
+
+<meta name="twitter:title" content="科学上网如何搭建"/>
+<meta name="twitter:description" content="概述 这篇主要讲如何搭建自己的科学上网服务，现在常见的的搭建方式有： SSR『机场主常用，现在容易被封，不建议』 V2Ray 『建议，现在用的比较多』 搭建 一"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://blog.gojw.xyz/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA/" /><link rel="prev" href="https://blog.gojw.xyz/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/" /><link rel="next" href="https://blog.gojw.xyz/2020-03-20-MySQL%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "科学上网如何搭建",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.gojw.xyz\/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA\/"
+        },"genre": "posts","keywords": "科学上网, vps","wordcount":  472 ,
+        "url": "https:\/\/blog.gojw.xyz\/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA\/","datePublished": "2020-03-20T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "jw"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的全新 Hugo 博客网站"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="https://avatars.githubusercontent.com/u/48782751?v=4"
+        data-srcset="https://avatars.githubusercontent.com/u/48782751?v=4, https://avatars.githubusercontent.com/u/48782751?v=4 1.5x, https://avatars.githubusercontent.com/u/48782751?v=4 2x"
+        data-sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/48782751?v=4"
+        title="https://avatars.githubusercontent.com/u/48782751?v=4" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的全新 Hugo 博客网站"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="https://avatars.githubusercontent.com/u/48782751?v=4"
+        data-srcset="https://avatars.githubusercontent.com/u/48782751?v=4, https://avatars.githubusercontent.com/u/48782751?v=4 1.5x, https://avatars.githubusercontent.com/u/48782751?v=4 2x"
+        data-sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/48782751?v=4"
+        title="https://avatars.githubusercontent.com/u/48782751?v=4" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">科学上网如何搭建</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>jw</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="0001年01月01日">0001年01月01日</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 472 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#概述">概述</a></li>
+    <li><a href="#搭建">搭建</a></li>
+    <li><a href="#开启-bbrplus-加速">开启 bbrplus 加速</a></li>
+    <li><a href="#cloudflare-cdn支持端口">cloudflare cdn支持端口</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="概述">概述</h2>
+<p>这篇主要讲如何搭建自己的科学上网服务，现在常见的的搭建方式有：</p>
+<ul>
+<li>SSR『机场主常用，现在容易被封，不建议』</li>
+<li>V2Ray 『建议，现在用的比较多』</li>
+</ul>
+<h2 id="搭建">搭建</h2>
+<p>一般都是一键的脚本安装，有造好的轮子，直接拿来用就可以了。</p>
+<ol>
+<li>远程连接服务器，直接执行，一般不会出问题。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">bash &lt;<span class="o">(</span>curl -Ls https://blog.sprov.xyz/v2-ui.sh<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>
+<p>不出意外就安装好了
+<a href="https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png" title="https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png" target="_blank" rel="noopener noreffer"><figure><a class="lightgallery" href="https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png" title="https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png" data-thumbnail="https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png" data-sub-html="<h2>https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png</h2><p>https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png"
+            data-srcset="https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png, https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png 1.5x, https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png 2x"
+            data-sizes="auto"
+            alt="https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png" />
+    </a><figcaption class="image-caption">https://ae01.alicdn.com/kf/H1a67c6f159514e91a7138ea5a2130fffl.png</figcaption>
+    </figure></a>
+默认端口 65432 ，需要修改请按选项修改</p>
+</li>
+<li>
+<p>选择协议</p>
+</li>
+</ol>
+<p><a href="https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png" title="https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png" target="_blank" rel="noopener noreffer"><figure><a class="lightgallery" href="https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png" title="https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png" data-thumbnail="https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png" data-sub-html="<h2>https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png</h2><p>https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png"
+            data-srcset="https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png, https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png 1.5x, https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png 2x"
+            data-sizes="auto"
+            alt="https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png" />
+    </a><figcaption class="image-caption">https://ae01.alicdn.com/kf/H01c6ea4415e641c29174fb59cc3abb55T.png</figcaption>
+    </figure></a></p>
+<p>一般选择前两种，第二种最简单</p>
+<ul>
+<li>
+<p>第二种，加密选择这个，对手机端友好似乎，一般我选择 chacha20-poly3305, shadowsocks 速度快，但是加密简单。
+<a href="https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png" title="https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png" target="_blank" rel="noopener noreffer"><figure><a class="lightgallery" href="https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png" title="https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png" data-thumbnail="https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png" data-sub-html="<h2>https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png</h2><p>https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png"
+            data-srcset="https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png, https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png 1.5x, https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png 2x"
+            data-sizes="auto"
+            alt="https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png" />
+    </a><figcaption class="image-caption">https://ae01.alicdn.com/kf/H55f3bb03638e411d8a9e3da41ef914369.png</figcaption>
+    </figure></a></p>
+</li>
+<li>
+<p>第一种，组合配置很多，都是根据 vmess 协议加密，说下最难配置的，vmess+ws+tls，<strong>使用域名登录注意</strong>，服务器没上传证书的话，也可以用证书内容代替，建议改为路径的，服务器设置自动续签证书，证书申请见 <a href="https://blog.gojw.xyz/2020/03/19/%E5%85%8D%E8%B4%B9https%E8%AF%81%E4%B9%A6%E7%94%B3%E8%AF%B7%28%E8%87%AA%E5%8A%A8%E7%BB%AD%E7%AD%BE%29/" title="续签" target="_blank" rel="noopener noreffer">续签</a>，如果隐藏ip,cdn的话注意cdn支持的端口，文章末尾贴一下。</p>
+</li>
+</ul>
+<p><a href="https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png" title="https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png" target="_blank" rel="noopener noreffer"><figure><a class="lightgallery" href="https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png" title="https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png" data-thumbnail="https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png" data-sub-html="<h2>https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png</h2><p>https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png"
+            data-srcset="https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png, https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png 1.5x, https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png 2x"
+            data-sizes="auto"
+            alt="https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png" />
+    </a><figcaption class="image-caption">https://ae01.alicdn.com/kf/H3b015b0215d44beca24159f16c453f4c3.png</figcaption>
+    </figure></a></p>
+<h2 id="开启-bbrplus-加速">开启 bbrplus 加速</h2>
+<p>几种加速方式，bbrplus较为稳定，你可以多做尝试。下面给出两种，一种只适合bbrplus（centos7）
+<a href="https://github.com/cx9208/bbrplus" title="bbrplus(centos7)" target="_blank" rel="noopener noreffer">bbrplus(centos7)</a>
+<a href="https://github.com/chiakge/Linux-NetSpeed" title="其他加速方式一键脚本" target="_blank" rel="noopener noreffer">其他加速方式一键脚本</a>
+中间等待时间可能较长，别以为是脚本出问题了。还有的加速无法安装，和你选的系统有关。</p>
+<h2 id="cloudflare-cdn支持端口">cloudflare cdn支持端口</h2>
+<p><a href="https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png" title="https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png" target="_blank" rel="noopener noreffer"><figure><a class="lightgallery" href="https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png" title="https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png" data-thumbnail="https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png" data-sub-html="<h2>https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png</h2><p>https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png"
+            data-srcset="https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png, https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png 1.5x, https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png 2x"
+            data-sizes="auto"
+            alt="https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png" />
+    </a><figcaption class="image-caption">https://ae01.alicdn.com/kf/Hdfe2d328f96941cc9737806c37c50f82T.png</figcaption>
+    </figure></a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 0001年01月01日</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://blog.gojw.xyz/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA/" data-title="科学上网如何搭建" data-via="xxxx" data-hashtags="科学上网,vps"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://blog.gojw.xyz/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA/" data-hashtag="科学上网"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://blog.gojw.xyz/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA/" data-title="科学上网如何搭建" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://blog.gojw.xyz/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA/" data-title="科学上网如何搭建"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://blog.gojw.xyz/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA/" data-title="科学上网如何搭建"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://blog.gojw.xyz/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA/" data-title="科学上网如何搭建" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://blog.gojw.xyz/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA/" data-title="科学上网如何搭建" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.gojw.xyz/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA/" data-title="科学上网如何搭建"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/">科学上网</a>,&nbsp;<a href="/tags/vps/">vps</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/" class="prev" rel="prev" title="centos7安装jekyll(自动拉取GitHub提交)"><i class="fas fa-angle-left fa-fw"></i>centos7安装jekyll(自动拉取GitHub提交)</a>
+            <a href="/2020-03-20-MySQL%E4%B8%AD%E7%9A%84%E6%97%B6%E9%97%B4/" class="next" rel="next" title="MySQL插入当前时间、自动更新时间">MySQL插入当前时间、自动更新时间<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.82.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">jw</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

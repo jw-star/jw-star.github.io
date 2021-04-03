@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>苹果CMS，宝塔 - 标签 - 我的全新 Hugo 博客网站</title>
+        <link>https://blog.gojw.xyz/tags/%E8%8B%B9%E6%9E%9CCMS%E5%AE%9D%E5%A1%94/</link>
+        <description>苹果CMS，宝塔 - 标签 - 我的全新 Hugo 博客网站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2419254437@qq.com (jw)</managingEditor>
+            <webMaster>2419254437@qq.com (jw)</webMaster><lastBuildDate>Tue, 14 Apr 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.gojw.xyz/tags/%E8%8B%B9%E6%9E%9CCMS%E5%AE%9D%E5%A1%94/" rel="self" type="application/rss+xml" /><item>
+    <title>苹果 cms 自定义对接微信公众号</title>
+    <link>https://blog.gojw.xyz/2020-04-14-%E8%8B%B9%E6%9E%9C-cms-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%B9%E6%8E%A5%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/</link>
+    <pubDate>Tue, 14 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-04-14-%E8%8B%B9%E6%9E%9C-cms-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%B9%E6%8E%A5%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7/</guid>
+    <description><![CDATA[苹果 cms 自定义对接微信公众号 概述 苹果 cms 自带的微信对接能实现关注回复、少量关键字词回复， 功能很鸡肋，对接并没有什么乱用。所以自己用就学习了下怎么]]></description>
+</item></channel>
+</rss>

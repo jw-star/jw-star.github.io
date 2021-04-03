@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>centos7安装jekyll(自动拉取GitHub提交) - 我的全新 Hugo 博客网站</title><meta name="Description" content="我的全新 Hugo 博客网站"><meta property="og:title" content="centos7安装jekyll(自动拉取GitHub提交)" />
+<meta property="og:description" content="TOC {:toc} rvm安装jekyll安装 githubpages 运行的jekyll响应太慢，于是决定放到主机上，并实现提交到github的文件，主机自动拉取,jekyll自" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.gojw.xyz/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/" /><meta property="og:image" content="https://blog.gojw.xyz/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-03-19T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2019-03-19T00:00:00&#43;00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://blog.gojw.xyz/logo.png"/>
+
+<meta name="twitter:title" content="centos7安装jekyll(自动拉取GitHub提交)"/>
+<meta name="twitter:description" content="TOC {:toc} rvm安装jekyll安装 githubpages 运行的jekyll响应太慢，于是决定放到主机上，并实现提交到github的文件，主机自动拉取,jekyll自"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://blog.gojw.xyz/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/" /><link rel="prev" href="https://blog.gojw.xyz/2020-03-19-jekyll%E7%BC%96%E8%BE%91%E5%99%A8-Jkyll-Editor/" /><link rel="next" href="https://blog.gojw.xyz/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "centos7安装jekyll(自动拉取GitHub提交)",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/blog.gojw.xyz\/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll\/"
+        },"genre": "posts","keywords": "centos, jekyll, github","wordcount":  1222 ,
+        "url": "https:\/\/blog.gojw.xyz\/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll\/","datePublished": "2019-03-19T00:00:00+00:00","dateModified": "2019-03-19T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "jw"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的全新 Hugo 博客网站"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="https://avatars.githubusercontent.com/u/48782751?v=4"
+        data-srcset="https://avatars.githubusercontent.com/u/48782751?v=4, https://avatars.githubusercontent.com/u/48782751?v=4 1.5x, https://avatars.githubusercontent.com/u/48782751?v=4 2x"
+        data-sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/48782751?v=4"
+        title="https://avatars.githubusercontent.com/u/48782751?v=4" /></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的全新 Hugo 博客网站"><img
+        class="lazyload logo"
+        src="/svg/loading.min.svg"
+        data-src="https://avatars.githubusercontent.com/u/48782751?v=4"
+        data-srcset="https://avatars.githubusercontent.com/u/48782751?v=4, https://avatars.githubusercontent.com/u/48782751?v=4 1.5x, https://avatars.githubusercontent.com/u/48782751?v=4 2x"
+        data-sizes="auto"
+        alt="https://avatars.githubusercontent.com/u/48782751?v=4"
+        title="https://avatars.githubusercontent.com/u/48782751?v=4" /></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">centos7安装jekyll(自动拉取GitHub提交)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>jw</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019年03月19日">2019年03月19日</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1222 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#rvm安装jekyll安装">rvm安装jekyll安装</a></li>
+    <li><a href="#流程图">流程图</a></li>
+    <li><a href="#jekyll">jekyll</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#ruby环境">ruby环境</a></li>
+            <li><a href="#安装-ruby-242">安装 ruby 2.4.2</a></li>
+            <li><a href="#jekyll环境">jekyll环境</a></li>
+            <li><a href="#jekyll安装">jekyll安装</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#自动拉取相关">自动拉取相关</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#centos77安装node">centos7.7安装node</a></li>
+            <li><a href="#nginx相关">Nginx相关</a></li>
+            <li><a href="#启动服务">启动服务</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><ul>
+<li>TOC
+{:toc}</li>
+</ul>
+<h2 id="rvm安装jekyll安装">rvm安装jekyll安装</h2>
+<blockquote>
+<p>githubpages 运行的jekyll响应太慢，于是决定放到主机上，并实现提交到github的文件，主机自动拉取,jekyll自动渲染。</p>
+</blockquote>
+<blockquote>
+<p>利用 docker-compose 快速安装 nginx，提供https支持，申请证书可以参考<a href="https://blog.csdn.net/qq_39846820/article/details/103496925" target="_blank" rel="noopener noreffer">这篇</a>，免费证书，自动续签。</p>
+</blockquote>
+<h2 id="流程图">流程图</h2>
+<img src="https://raw.githubusercontent.com/jw-star/myFigurebed/master/img/20200319184023.svg?sanitize=true" width="400px">
+<h2 id="jekyll">jekyll</h2>
+<h4 id="ruby环境">ruby环境</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">gpg</span> <span class="o">--</span><span class="n">keyserver</span> <span class="n">hkp</span><span class="o">:</span><span class="c1">//keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"> <span class="nb">curl </span><span class="n">-sSL</span> <span class="n">https</span><span class="err">:</span><span class="p">//</span><span class="n">get</span><span class="p">.</span><span class="n">rvm</span><span class="p">.</span><span class="n">io</span> <span class="p">|</span> <span class="n">bash</span> <span class="n">-s</span> <span class="n">stable</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">source</span> <span class="p">/</span><span class="n">etc</span><span class="p">/</span><span class="n">profile</span><span class="p">.</span><span class="n">d</span><span class="p">/</span><span class="n">rvm</span><span class="p">.</span><span class="n">sh</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="安装-ruby-242">安装 ruby 2.4.2</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">rvm</span> <span class="n">install</span> <span class="n">2</span><span class="p">.</span><span class="n">4</span><span class="p">.</span><span class="n">2</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="jekyll环境">jekyll环境</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">yum</span> <span class="n">install</span> <span class="n">ruby-full</span> <span class="n">build-essential</span> <span class="n">zlib1g-dev</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以下命令会将环境变量添加到〜/ .bashrc文件中，以配置gem安装路径</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">echo </span><span class="s1">&#39;# Install Ruby Gems to ~/gems&#39;</span> <span class="p">&gt;&gt;</span> <span class="p">~/.</span><span class="n">bashrc</span>
+<span class="nb">echo </span><span class="s1">&#39;export GEM_HOME=&#34;$HOME/gems&#34;&#39;</span> <span class="p">&gt;&gt;</span> <span class="p">~/.</span><span class="n">bashrc</span>
+<span class="nb">echo </span><span class="s1">&#39;export PATH=&#34;$HOME/gems/bin:$PATH&#34;&#39;</span> <span class="p">&gt;&gt;</span> <span class="p">~/.</span><span class="n">bashrc</span>
+<span class="n">source</span> <span class="p">~/.</span><span class="n">bashrc</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="jekyll安装">jekyll安装</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">gem</span> <span class="n">install</span> <span class="n">jekyll</span> <span class="n">bundler</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可能遇到 RubyGems 版本太低，按提示升级，重新安装 jekyll
+漫长等待。。。jekyll安装好了就
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p3LXN0YXIvbXlGaWd1cmViZWQvbWFzdGVyL2ltZy8yMDIwMDMxOTAxMDQ1NC5wbmc?x-oss-process=image/format,png"
+        data-srcset="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p3LXN0YXIvbXlGaWd1cmViZWQvbWFzdGVyL2ltZy8yMDIwMDMxOTAxMDQ1NC5wbmc?x-oss-process=image/format%2cpng, https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p3LXN0YXIvbXlGaWd1cmViZWQvbWFzdGVyL2ltZy8yMDIwMDMxOTAxMDQ1NC5wbmc?x-oss-process=image/format%2cpng 1.5x, https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p3LXN0YXIvbXlGaWd1cmViZWQvbWFzdGVyL2ltZy8yMDIwMDMxOTAxMDQ1NC5wbmc?x-oss-process=image/format%2cpng 2x"
+        data-sizes="auto"
+        alt="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p3LXN0YXIvbXlGaWd1cmViZWQvbWFzdGVyL2ltZy8yMDIwMDMxOTAxMDQ1NC5wbmc?x-oss-process=image/format,png"
+        title="在这里插入图片描述" /></p>
+<p>也可能提示 rubygem版本低，升级就可以了</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html">gem install rubygems-update
+update_rubygems
+gem update --system
+</code></pre></td></tr></table>
+</div>
+</div><hr>
+<hr>
+<h2 id="自动拉取相关">自动拉取相关</h2>
+<p>原理就是 push 到 github 仓库后，github回调一个地址，本地用node.js接收回调，执行脚本，拉取仓库并让jekyll重新渲染，也可以设置增量渲染</p>
+<h4 id="centos77安装node">centos7.7安装node</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">rpm</span> <span class="n">-ivh</span> <span class="n">https</span><span class="err">:</span><span class="p">//</span><span class="n">dl</span><span class="p">.</span><span class="n">fedoraproject</span><span class="p">.</span><span class="n">org</span><span class="p">/</span><span class="n">pub</span><span class="p">/</span><span class="n">epel</span><span class="p">/</span><span class="n">7</span><span class="p">/</span><span class="n">x86_64</span><span class="p">/</span><span class="n">Packages</span><span class="p">/</span><span class="n">e</span><span class="p">/</span><span class="n">epel-release</span><span class="p">-</span><span class="n">7</span><span class="p">-</span><span class="n">11</span><span class="p">.</span><span class="n">noarch</span><span class="p">.</span><span class="n">rpm</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">yum</span> <span class="n">install</span> <span class="n">-y</span> <span class="n">nodejs</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>安装 github-webhook-handler ，主要靠它webhook</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">npm</span> <span class="n">install</span> <span class="n">-g</span> <span class="n">github-webhook-handler</span>     <span class="c">#安装 github-webhook-handler</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>进入目录，脚本再这里，可以直接引入到js文件中，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">cd </span> <span class="p">/</span><span class="n">usr</span><span class="p">/</span><span class="n">lib</span><span class="p">/</span><span class="n">node_modules</span><span class="p">/</span><span class="n">github-webhook-handler</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>js文件,需要修改的文件已经注释
+参考图片设置 webhook
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p3LXN0YXIvbXlGaWd1cmViZWQvbWFzdGVyL2ltZy8yMDIwMDMxOTEzMjUzNy5wbmc?x-oss-process=image/format,png"
+        data-srcset="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p3LXN0YXIvbXlGaWd1cmViZWQvbWFzdGVyL2ltZy8yMDIwMDMxOTEzMjUzNy5wbmc?x-oss-process=image/format%2cpng, https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p3LXN0YXIvbXlGaWd1cmViZWQvbWFzdGVyL2ltZy8yMDIwMDMxOTEzMjUzNy5wbmc?x-oss-process=image/format%2cpng 1.5x, https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p3LXN0YXIvbXlGaWd1cmViZWQvbWFzdGVyL2ltZy8yMDIwMDMxOTEzMjUzNy5wbmc?x-oss-process=image/format%2cpng 2x"
+        data-sizes="auto"
+        alt="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p3LXN0YXIvbXlGaWd1cmViZWQvbWFzdGVyL2ltZy8yMDIwMDMxOTEzMjUzNy5wbmc?x-oss-process=image/format,png"
+        title="webhook 设置" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">var</span> <span class="n">http</span> <span class="p">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">)</span>
+<span class="n">var</span> <span class="n">createHandler</span> <span class="p">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;github-webhook-handler&#39;</span><span class="p">)</span>
+<span class="n">var</span> <span class="n">handler</span> <span class="p">=</span> <span class="n">createHandler</span><span class="p">({</span> <span class="n">path</span><span class="err">:</span> <span class="s1">&#39;/deploy&#39;</span><span class="p">,</span> <span class="n">secret</span><span class="err">:</span> <span class="s1">&#39;password&#39;</span> <span class="p">})</span> <span class="p">//</span><span class="n">监听请求路径</span><span class="err">，</span><span class="n">和Github</span> <span class="n">配置的密码</span>
+ 
+<span class="k">function</span> <span class="n">run_cmd</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">var</span> <span class="n">spawn</span> <span class="p">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">).</span><span class="n">spawn</span><span class="p">;</span>
+  <span class="n">var</span> <span class="n">child</span> <span class="p">=</span> <span class="n">spawn</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">args</span><span class="p">);</span>
+  <span class="n">var</span> <span class="n">resp</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span><span class="p">;</span>
+ 
+  <span class="n">child</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span> <span class="p">{</span> <span class="n">resp</span> <span class="p">+=</span> <span class="n">buffer</span><span class="p">.</span><span class="n">toString</span><span class="p">();</span> <span class="p">});</span>
+  <span class="n">child</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">()</span> <span class="p">{</span> <span class="n">callback</span> <span class="p">(</span><span class="n">resp</span><span class="p">)</span> <span class="p">});</span>
+<span class="p">}</span>
+ 
+<span class="n">http</span><span class="p">.</span><span class="n">createServer</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">handler</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">res</span><span class="p">.</span><span class="n">statusCode</span> <span class="p">=</span> <span class="n">404</span>
+    <span class="n">res</span><span class="p">.</span><span class="k">end</span><span class="p">(</span><span class="s1">&#39;no such location&#39;</span><span class="p">)</span>
+  <span class="p">})</span>
+<span class="p">}).</span><span class="n">listen</span><span class="p">(</span><span class="n">3006</span><span class="p">)//</span><span class="n">监听的端口</span>
+ 
+<span class="n">handler</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="n">err</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">console</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Error:&#39;</span><span class="p">,</span> <span class="n">err</span><span class="p">.</span><span class="n">message</span><span class="p">)</span>
+<span class="p">})</span>
+ 
+<span class="n">handler</span><span class="p">.</span><span class="n">on</span><span class="p">(</span><span class="s1">&#39;push&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;Received a push event for %s to %s&#39;</span><span class="p">,</span>
+    <span class="n">event</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="n">repository</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
+    <span class="n">event</span><span class="p">.</span><span class="n">payload</span><span class="p">.</span><span class="k">ref</span><span class="p">);</span>
+  <span class="n">run_cmd</span><span class="p">(</span><span class="s1">&#39;sh&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;/usr/local/depoly.sh&#39;</span><span class="p">],</span> <span class="k">function</span><span class="p">(</span><span class="n">text</span><span class="p">){</span> <span class="n">console</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="p">});//</span><span class="n">成功后</span><span class="err">，</span><span class="n">执行的脚本</span><span class="err">。</span>
+<span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>shell脚本 deploy.sh</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="c">#!/bin/bash</span>
+<span class="n">gitname</span><span class="p">=</span><span class="n">jw-star</span> <span class="c">#修改为你的仓库</span>
+<span class="nb">cd </span><span class="p">/</span><span class="n">blog</span><span class="p">/${</span><span class="n">gitname</span><span class="p">}.</span><span class="n">github</span><span class="p">.</span><span class="n">io</span>
+<span class="nb">echo start </span><span class="n">pull</span> <span class="n">from</span> <span class="n">github</span> 
+<span class="n">git</span> <span class="n">pull</span> <span class="n">http</span><span class="err">:</span><span class="p">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/${</span><span class="n">gitname</span><span class="p">}/${</span><span class="n">gitname</span><span class="p">}.</span><span class="n">github</span><span class="p">.</span><span class="n">io</span><span class="p">.</span><span class="n">git</span>
+<span class="nb">echo start </span><span class="n">build</span><span class="p">..</span>
+<span class="n">jekyll</span> <span class="n">build</span> <span class="p">-</span><span class="n">-destination</span><span class="p">=/</span><span class="n">blog</span><span class="p">/</span><span class="n">site</span> <span class="c">#设置渲染到哪个目录</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>为了让 deploy.js 持续运行 ，安装 forever 守护进程，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">npm</span> <span class="n">install</span> <span class="n">forever</span> <span class="n">-g</span>   <span class="c">#安装</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>常见参数
+-a, –append: 合并日志
+-l LOGFILE: 输出日志到LOGFILE
+forever list : 查看日志位置，可以根据日志判断脚本执行情况</p>
+<p>启动脚本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">forever</span> <span class="nb">start </span><span class="n">-a</span> <span class="n">-l</span>  <span class="n">forever</span><span class="p">.</span><span class="n">log</span>   <span class="n">deploy</span><span class="p">.</span><span class="n">js</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>成功的话在 site 目录下会有渲染好的文件</strong></p>
+<h4 id="nginx相关">Nginx相关</h4>
+<p>docker 安装参考 <a href="https://blog.csdn.net/qq_39846820/article/details/103687861" target="_blank" rel="noopener noreffer">这篇</a>
+docker-compose 参考 <a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener noreffer">https://docs.docker.com/compose/install/</a>
+先贴一下整体目录结构</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">tree</span> <span class="n">-L</span> <span class="n">2</span> <span class="p">/</span><span class="n">blog</span><span class="p">/</span>          <span class="c">#- L 2子目录显示到两层</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p3LXN0YXIvbXlGaWd1cmViZWQvbWFzdGVyL2ltZy8yMDIwMDMxOTEzMzkwMC5wbmc?x-oss-process=image/format,png"
+        data-srcset="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p3LXN0YXIvbXlGaWd1cmViZWQvbWFzdGVyL2ltZy8yMDIwMDMxOTEzMzkwMC5wbmc?x-oss-process=image/format%2cpng, https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p3LXN0YXIvbXlGaWd1cmViZWQvbWFzdGVyL2ltZy8yMDIwMDMxOTEzMzkwMC5wbmc?x-oss-process=image/format%2cpng 1.5x, https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p3LXN0YXIvbXlGaWd1cmViZWQvbWFzdGVyL2ltZy8yMDIwMDMxOTEzMzkwMC5wbmc?x-oss-process=image/format%2cpng 2x"
+        data-sizes="auto"
+        alt="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p3LXN0YXIvbXlGaWd1cmViZWQvbWFzdGVyL2ltZy8yMDIwMDMxOTEzMzkwMC5wbmc?x-oss-process=image/format,png"
+        title="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2p3LXN0YXIvbXlGaWd1cmViZWQvbWFzdGVyL2ltZy8yMDIwMDMxOTEzMzkwMC5wbmc?x-oss-process=image/format,png" />
+docker-compose.yml</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3&#39;</span><span class="w">
+</span><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">nginx</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span><span class="w"></span><span class="c"># build:</span><span class="w">
+</span><span class="w"></span><span class="c">#   context: .</span><span class="w">
+</span><span class="w"></span><span class="c">#   dockerfile:  ./nginx/Dockerfile</span><span class="w">
+</span><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;nginx:latest&#34;</span><span class="w">
+</span><span class="w">      </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l">always</span><span class="w"> </span><span class="c">#出现错误自动重启</span><span class="w">
+</span><span class="w">      </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="l">./site:/usr/share/nginx/html</span><span class="w"> </span><span class="c">#站点目录映射到容器的目录</span><span class="w">
+</span><span class="w">        </span>- <span class="l">./nginx/conf.d/:/etc/nginx/conf.d</span><span class="w"> </span><span class="c">#映射配置文件到容器目录</span><span class="w">
+</span><span class="w">      </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="m">443</span><span class="p">:</span><span class="m">443</span><span class="w">
+</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>default.conf</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">server</span> <span class="p">{</span>
+    <span class="n">listen</span> <span class="n">443</span> <span class="n">ssl</span><span class="p">;</span>
+    <span class="n">server_name</span>  <span class="n">localhost</span><span class="p">;</span>
+    <span class="n">ssl</span> <span class="n">on</span><span class="p">;</span> <span class="c">#强制https,这是趋势</span>
+
+    <span class="n">ssl_certificate</span> <span class="p">/</span><span class="n">etc</span><span class="p">/</span><span class="n">nginx</span><span class="p">/</span><span class="n">conf</span><span class="p">.</span><span class="n">d</span><span class="p">/</span><span class="n">fullchain</span><span class="p">.</span><span class="n">cer</span><span class="p">;</span>
+    <span class="n">ssl_certificate_key</span> <span class="p">/</span><span class="n">etc</span><span class="p">/</span><span class="n">nginx</span><span class="p">/</span><span class="n">conf</span><span class="p">.</span><span class="n">d</span><span class="p">/</span><span class="n">gojw</span><span class="p">.</span><span class="n">xyz</span><span class="p">.</span><span class="n">key</span><span class="p">;</span>
+
+    <span class="n">ssl_session_cache</span>    <span class="n">shared</span><span class="err">:</span><span class="n">SSL</span><span class="err">:</span><span class="n">1m</span><span class="p">;</span>
+    <span class="n">ssl_session_timeout</span>  <span class="n">5m</span><span class="p">;</span>
+
+     <span class="c"># 指定密码为openssl支持的格式</span>
+     <span class="n">ssl_protocols</span>  <span class="n">SSLv2</span> <span class="n">SSLv3</span> <span class="n">TLSv1</span><span class="p">.</span><span class="n">2</span><span class="p">;</span>
+
+     <span class="n">ssl_ciphers</span>  <span class="n">HIGH</span><span class="err">:</span><span class="p">!</span><span class="n">aNULL</span><span class="err">:</span><span class="p">!</span><span class="n">MD5</span><span class="p">;</span>  <span class="c"># 密码加密方式</span>
+     <span class="n">ssl_prefer_server_ciphers</span>  <span class="n">on</span><span class="p">;</span>   <span class="c"># 依赖SSLv3和TLSv1协议的服务器密码将优先于客户端密码</span>
+     <span class="n">location</span> <span class="p">/</span> <span class="p">{</span>
+        <span class="n">root</span>  <span class="p">/</span><span class="n">usr</span><span class="p">/</span><span class="n">share</span><span class="p">/</span><span class="n">nginx</span><span class="p">/</span><span class="n">html</span><span class="p">;</span>
+        <span class="n">index</span>  <span class="n">index</span><span class="p">.</span><span class="n">html</span> <span class="n">index</span><span class="p">.</span><span class="n">htm</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">error_page</span>   <span class="n">500</span> <span class="n">502</span> <span class="n">503</span> <span class="n">504</span>  <span class="p">/</span><span class="n">50x</span><span class="p">.</span><span class="n">html</span><span class="p">;</span>
+    <span class="n">location</span> <span class="p">=</span> <span class="p">/</span><span class="n">50x</span><span class="p">.</span><span class="n">html</span> <span class="p">{</span>
+        <span class="n">root</span>   <span class="p">/</span><span class="n">usr</span><span class="p">/</span><span class="n">share</span><span class="p">/</span><span class="n">nginx</span><span class="p">/</span><span class="n">html</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="启动服务">启动服务</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>         <span class="err">#</span><span class="o">-</span><span class="n">d</span> <span class="err">后台启动</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2019年03月19日</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://blog.gojw.xyz/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/" data-title="centos7安装jekyll(自动拉取GitHub提交)" data-via="xxxx" data-hashtags="centos,jekyll,github"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://blog.gojw.xyz/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/" data-hashtag="centos"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="分享到 WhatsApp" data-sharer="whatsapp" data-url="https://blog.gojw.xyz/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/" data-title="centos7安装jekyll(自动拉取GitHub提交)" data-web><i class="fab fa-whatsapp fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://blog.gojw.xyz/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/" data-title="centos7安装jekyll(自动拉取GitHub提交)"><i data-svg-src="/lib/simple-icons/icons/line.min.svg"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://blog.gojw.xyz/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/" data-title="centos7安装jekyll(自动拉取GitHub提交)"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Myspace" data-sharer="myspace" data-url="https://blog.gojw.xyz/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/" data-title="centos7安装jekyll(自动拉取GitHub提交)" data-description=""><i data-svg-src="/lib/simple-icons/icons/myspace.min.svg"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://blog.gojw.xyz/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/" data-title="centos7安装jekyll(自动拉取GitHub提交)" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Evernote" data-sharer="evernote" data-url="https://blog.gojw.xyz/2020-03-19-centos7%E5%AE%89%E8%A3%85jekyll/" data-title="centos7安装jekyll(自动拉取GitHub提交)"><i class="fab fa-evernote fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/centos/">centos</a>,&nbsp;<a href="/tags/jekyll/">jekyll</a>,&nbsp;<a href="/tags/github/">github</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2020-03-19-jekyll%E7%BC%96%E8%BE%91%E5%99%A8-Jkyll-Editor/" class="prev" rel="prev" title="jekyll编辑器 Jkyll Editor"><i class="fas fa-angle-left fa-fw"></i>jekyll编辑器 Jkyll Editor</a>
+            <a href="/2020-03-20-%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA/" class="next" rel="next" title="科学上网如何搭建">科学上网如何搭建<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.82.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">jw</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><link rel="stylesheet" href="/lib/cookieconsent/cookieconsent.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.stemmer.support.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.zh.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript" src="/lib/cookieconsent/cookieconsent.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"cookieconsent":{"content":{"dismiss":"同意","link":"了解更多","message":"本网站使用 Cookies 来改善您的浏览体验."},"enable":true,"palette":{"button":{"background":"#f0f0f0"},"popup":{"background":"#1aa3ff"}},"theme":"edgeless"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

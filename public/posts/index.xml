@@ -1,0 +1,78 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>所有文章 - 我的全新 Hugo 博客网站</title>
+        <link>https://blog.gojw.xyz/posts/</link>
+        <description>所有文章 | 我的全新 Hugo 博客网站</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>2419254437@qq.com (jw)</managingEditor>
+            <webMaster>2419254437@qq.com (jw)</webMaster><lastBuildDate>Sat, 03 Apr 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://blog.gojw.xyz/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>githubActions部署文件到服务器</title>
+    <link>https://blog.gojw.xyz/2021-04-03-githubActions%E9%83%A8%E7%BD%B2%E6%96%87%E4%BB%B6%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+    <pubDate>Sat, 03 Apr 2021 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2021-04-03-githubActions%E9%83%A8%E7%BD%B2%E6%96%87%E4%BB%B6%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+    <description><![CDATA[ssh秘钥方式 首先在服务器生成秘钥 参考 ：参考 1 2 3 4 5 6 7 8 9 10 - name: Deploy to Staging server uses: easingthemes/ssh-deploy@v2.1.6 env: SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }} ARGS: &#34;-rltgoDzvO&#34; SOURCE: &#39;./public/&#39; #仓库根路径 REMOTE_HOST: ${{ secrets.SSH_HOST }} REMOTE_USER: ${{ secrets.SSH_USERNAME }} TARGET: &#39;/www/wwwroot/blog.gojw.xyz/mybolg/&#39; #目标服务]]></description>
+</item><item>
+    <title>2020双十一刷喵币脚本使用教程(10月28更新可用)</title>
+    <link>https://blog.gojw.xyz/2020-10-21-%E5%8F%8C%E5%8D%81%E4%B8%80%E5%88%B7%E5%96%B5%E5%B8%81%E8%84%9A%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</link>
+    <pubDate>Wed, 21 Oct 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-10-21-%E5%8F%8C%E5%8D%81%E4%B8%80%E5%88%B7%E5%96%B5%E5%B8%81%E8%84%9A%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</guid>
+    <description><![CDATA[支付宝二合一代码更新 概述 今年双十一还是跟喵币有关，刷喵币，得红包。 教程 8.9.2可用，9.5失效 QQ群有8.9.2版本 淘宝8.9.2下载链接]]></description>
+</item><item>
+    <title>soul下载音频</title>
+    <link>https://blog.gojw.xyz/2020-10-09-soul%E4%B8%8B%E8%BD%BD%E9%9F%B3%E9%A2%91/</link>
+    <pubDate>Fri, 09 Oct 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-10-09-soul%E4%B8%8B%E8%BD%BD%E9%9F%B3%E9%A2%91/</guid>
+    <description><![CDATA[下载]]></description>
+</item><item>
+    <title>springboot应用之切面日志</title>
+    <link>https://blog.gojw.xyz/2020-09-12-springboot%E5%BA%94%E7%94%A8%E4%B9%8B%E5%88%87%E9%9D%A2%E6%97%A5%E5%BF%97/</link>
+    <pubDate>Sat, 12 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-09-12-springboot%E5%BA%94%E7%94%A8%E4%B9%8B%E5%88%87%E9%9D%A2%E6%97%A5%E5%BF%97/</guid>
+    <description><![CDATA[前言 利用自定义注解和切面为方法添加日志打印功能 一、效果 1 2 3 4 5 6 7 8 9 com.example.demo1.Aspet.LogAspect :------------------------------- start --------------------------com.example.demo1.Aspet.LogAspect : Method detail Description:login打印com.exam]]></description>
+</item><item>
+    <title>soul上传长音频</title>
+    <link>https://blog.gojw.xyz/2020-09-09-soul%E4%B8%8A%E4%BC%A0%E9%95%BF%E9%9F%B3%E9%A2%91/</link>
+    <pubDate>Wed, 09 Sep 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-09-09-soul%E4%B8%8A%E4%BC%A0%E9%95%BF%E9%9F%B3%E9%A2%91/</guid>
+    <description><![CDATA[格式转换 必须是特定格式的 wav文件，转换器地址： https://github.com/jw-star/myFigurebed/raw/master/Soul%E5%BD%95%E9%9F%B3%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E5%99%A82.1.zip 解压里面有教程 将需要转换的录音文件(不只mp3格式，其他格式也可以)放入MP3文件夹里面（]]></description>
+</item><item>
+    <title>2020-08-27-js判断空，null</title>
+    <link>https://blog.gojw.xyz/2020-08-27-js%E5%88%A4%E6%96%AD%E7%A9%BAnull/</link>
+    <pubDate>Thu, 27 Aug 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-08-27-js%E5%88%A4%E6%96%AD%E7%A9%BAnull/</guid>
+    <description><![CDATA[1 obj == &#34;undefined&#34; || obj == null || obj == &#39;&#39; 1 variable1 !== null || variable1 !== undefined || variable1 !== &#39;&#39;]]></description>
+</item><item>
+    <title>js数组取值的两种方式</title>
+    <link>https://blog.gojw.xyz/2020-08-25-js%E6%95%B0%E7%BB%84%E5%8F%96%E5%80%BC%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/</link>
+    <pubDate>Tue, 25 Aug 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-08-25-js%E6%95%B0%E7%BB%84%E5%8F%96%E5%80%BC%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F/</guid>
+    <description><![CDATA[问题 1 2 3 4 5 yData0:{zyxhId: null, deptNumber:null,…}1:{zyxhId: null, deptNumber:null,…}2:{zyxhId: null, dep]]></description>
+</item><item>
+    <title>layer关闭弹窗，刷新父页面</title>
+    <link>https://blog.gojw.xyz/2020-08-23-layer%E5%85%B3%E9%97%AD-%E5%BC%B9%E7%AA%97%E5%88%B7%E6%96%B0%E7%88%B6%E9%A1%B5%E9%9D%A2/</link>
+    <pubDate>Sun, 23 Aug 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-08-23-layer%E5%85%B3%E9%97%AD-%E5%BC%B9%E7%AA%97%E5%88%B7%E6%96%B0%E7%88%B6%E9%A1%B5%E9%9D%A2/</guid>
+    <description><![CDATA[layer关闭弹窗，刷新父页面 1 2 3 4 5 6 7 8 //获取index不要写在函数里， //可能获取不到index var index = parent.layer.getFrameIndex(window.name); function closeFram() { window.parent.refreshPage() //调用父页面方法]]></description>
+</item><item>
+    <title>netflix奈飞观看</title>
+    <link>https://blog.gojw.xyz/2020-05-30-netflix%E5%A5%88%E9%A3%9E%E8%A7%82%E7%9C%8B/</link>
+    <pubDate>Sat, 30 May 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-05-30-netflix%E5%A5%88%E9%A3%9E%E8%A7%82%E7%9C%8B/</guid>
+    <description><![CDATA[奈飞观看条件 奈飞账号：可以某宝买，每月8元左右； 科学上网工具：没有被奈飞屏蔽的服务器ip；如：161开头的ip 电脑端观看 谷歌浏览器，访问奈飞]]></description>
+</item><item>
+    <title>docker-compose 安装 酷q机器人</title>
+    <link>https://blog.gojw.xyz/2020-04-16-docker-compose%E5%AE%89%E8%A3%85%E9%85%B7q%E6%9C%BA%E5%99%A8%E4%BA%BA/</link>
+    <pubDate>Thu, 16 Apr 2020 00:00:00 &#43;0000</pubDate>
+    <author>作者</author>
+    <guid>https://blog.gojw.xyz/2020-04-16-docker-compose%E5%AE%89%E8%A3%85%E9%85%B7q%E6%9C%BA%E5%99%A8%E4%BA%BA/</guid>
+    <description><![CDATA[docker-compose 安装 酷q机器人 概述 之前用 werobot 对接了微信公众号，但是微信公众号限制太大，所以看了下怎么用qq机器人解决问题 安装 目录结构 https://ae01.alicdn.com/kf/H1b4e29a4e21a44b5ab1fb188b618215d0.pnghttps://ae01.alicdn.com/kf/H1b4e29a4e21a44b5ab1fb188b618215d0.png " https://ae01.alicdn.com/kf/H1b4e29a4e21a44b5ab1fb188b618215d0.png docker-compose.yml 1 2 3 4 5 6 7 8]]></description>
+</item></channel>
+</rss>
