@@ -6,7 +6,8 @@ tags:
   - jekyll
   - github
 title: centos7安装jekyll(自动拉取GitHub提交)
-date: 2019-03-19
+date: '2019-03-19T00:00:00.000Z'
+authors: jw
 ---
 * TOC
 {:toc}
