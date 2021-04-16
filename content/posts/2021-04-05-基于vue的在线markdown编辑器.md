@@ -22,7 +22,7 @@ lastmod: '2021-04-05 18:16:40'
 
 ## 预览
 
-{{< figure src="https://i.loli.net/2021/04/05/8aIOgEkrFAKGLcw.png" title="预览1" >}}
+{{< image src="https://i.loli.net/2021/04/05/8aIOgEkrFAKGLcw.png" caption="预览 (`1`)" src_s="https://i.loli.net/2021/04/05/8aIOgEkrFAKGLcw.png" src_l="https://i.loli.net/2021/04/05/8aIOgEkrFAKGLcw.png" >}}
 
 ![image.png](https://i.loli.net/2021/04/05/OospHq5yV1BJjGA.png)
 
