@@ -53,4 +53,4 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-{{< mapbox 116.4034138534206 39.9240913672106363 10 false "mapbox://styles/mapbox/streets-zh-v1" >}}
+{{< mapbox 116.403 39.924 10 false "mapbox://styles/mapbox/streets-zh-v1" >}}
