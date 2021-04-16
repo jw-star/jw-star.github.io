@@ -31,6 +31,9 @@ lastmod: '2021-04-05 18:16:40'
 ```
 npm install
 ```
+{{< typeit code=js >}}
+npm install
+{{< /typeit >}}
 
 ### Compiles and hot-reloads for development
 ```
