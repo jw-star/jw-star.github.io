@@ -55,3 +55,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 {{< mapbox 121.485 31.233 12 >}}
 
+{{< mermaid >}}
+pie
+    "Dogs" : 386
+    "Cats" : 85
+    "Rats" : 15
+{{< /mermaid >}}
+
+
