@@ -29,7 +29,7 @@ date: 2021-04-03
 ## 密码方式
 
 ```bash
-      - name: SSH Server Deploy
+      - name: SSH Server Deploy   
         uses: kostya-ten/ssh-server-deploy@v4
         with:
           host: ${{ secrets.SSH_HOST }}
