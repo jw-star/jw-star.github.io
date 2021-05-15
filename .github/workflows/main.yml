@@ -34,7 +34,7 @@ jobs:
           SOURCE: './public/'
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USERNAME }}
-          TARGET: '/www/wwwroot/blog.gojw.xyz/myblog/public/'
+          TARGET: '/www/wwwroot/blog.gojw.xyz/'
           EXCLUDE: "/dist/, /node_modules/"
 
 
