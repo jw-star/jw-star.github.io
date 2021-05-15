@@ -12,7 +12,7 @@ date: 2021-04-03
 
 
 ## ssh秘钥方式
-首先在服务器生成秘钥
+首先在服务器生成 秘 钥
 参考 ：[参考](https://github.com/easingthemes/ssh-deploy)
 ```bash
       - name: Deploy to Staging server
