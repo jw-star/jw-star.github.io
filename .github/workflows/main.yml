@@ -7,7 +7,16 @@ on:
     paths-ignore: # 下列文件的变更不触发部署，可以自行添加
       - README.md
       - LICENSE
-
+  workflow_dispatch:
+          inputs:
+              name:
+                  description: 'Person to greet'
+                  required: true
+                  default: 'Mona the Octocat'
+              home:
+                  description: 'location'
+                  required: false
+                  default: 'The Octoverse'     
 jobs:
   deploy:
     runs-on: ubuntu-18.04 # 使用ubuntu系统镜像运行自动化脚本
