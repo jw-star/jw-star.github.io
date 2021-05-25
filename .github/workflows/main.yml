@@ -51,7 +51,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           port: 22
           username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.DEPLOY_PASSWORD }}
+          private_key: ${{ secrets.DEPLOY_KEY }}
           scp_source: ./public/
           scp_target: /www/wwwroot/blog.gojw.xyz/
 
