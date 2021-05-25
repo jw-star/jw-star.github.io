@@ -36,7 +36,7 @@ jobs:
         run: hugo -D
 
       - name: Deploy to Staging server
-        uses: easingthemes/ssh-deploy@v2.1.7
+        uses: easingthemes/ssh-deploy@v2.1.6
         env:
           SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
           ARGS: "-rltgoDzvO"
