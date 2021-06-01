@@ -184,12 +184,8 @@ theme = "LoveIt"
 
   # 作者的社交信息设置
   [params.social]
-    GitHub = "@jw-star"
+    GitHub = "jw-star"
     Linkedin = ""
-    Twitter = "xxxx"
-    Instagram = "xxxx"
-    Facebook = "xxxx"
-    Telegram = "xxxx"
     Medium = ""
     Gitlab = ""
     Youtubelegacy = ""
@@ -246,7 +242,7 @@ theme = "LoveIt"
     XMPP = ""
     Matrix = ""
     Bilibili = ""
-    Email = "xxxx@xxxx.com"
+    Email = "18713828983@163.com"
     RSS = true # 
 
   #  文章页面配置
