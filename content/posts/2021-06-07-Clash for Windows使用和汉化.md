@@ -5,7 +5,6 @@ tags:
   - Clash for Windows
   - Windows
   - 汉化
-  - windows
 date: '2021-06-07'
 lastmod: '2021-06-07 13:40:30'
 ---
