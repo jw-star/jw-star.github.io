@@ -10,6 +10,8 @@ lastmod: '2021-06-07 13:40:30'
 ---
 
 ## 地 址
+免翻地址：[http://download.gojw.xyz/](http://download.gojw.xyz/)
+
 软件：[https://github.com/Fndroid/clash_for_windows_pkg/releases](https://github.com/Fndroid/clash_for_windows_pkg/releases)
 
 汉化：[https://github.com/BoyceLig/Clash_Chinese_Patch/releases](https://github.com/BoyceLig/Clash_Chinese_Patch/releases)  
